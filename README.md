@@ -63,7 +63,7 @@ In more general terms, a rule has the following form:
         ("element", <probability>)
     )
     
-Inside an ("element", <probability>) couple, "element" can contain the name
+Inside an ("element", ‹probability›) couple, "element" can contain the name
 of a rule itself again:
 
     ("{rule_name}", <probability>)

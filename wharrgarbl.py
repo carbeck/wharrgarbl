@@ -29,8 +29,6 @@ import random
 import re
 import sys
 
-rulelist = {}
-
 # Pick element from the rule list based on its associated probability
 # rulelist = [(item_0, p_item_0), (item_1, p_item_1), . . ., (item_n, p_item_n)]
 
@@ -40,8 +38,7 @@ def wg_pick(rulelist):
     for item, p_item in rulelist:
         p_cum += p_item
         if p < p_cum:
-            break
-    return item
+            return item
     
 
 # Takes matches and replaces them with a randomly picked rule from the rule list
@@ -70,11 +67,11 @@ def main(argv=None):
     
     parser = argparse.ArgumentParser(prog="wordgen.py", description=
                 "Generate random pseudo-words based on weighted probabilities.")
-    parser.add_argument('-n', '--number', nargs='?', default='10', type=int, 
+    parser.add_argument('-n','--number', nargs='?', default='10', type=int, 
             help="The number of pseudo-words to be generated. If no value is "
             "given, 10 will be assumed.", metavar='N')
-    parser.add_argument('-r', '--rules', dest='rulelist', required=True, help="File containing the generation rules.", metavar='<file>')
-    parser.add_argument('-o', '--out', dest='fileout', metavar='<file>',
+    parser.add_argument('-r','--rules', dest='rulelist', required=True, help="File containing the generation rules.", metavar='<file>')
+    parser.add_argument('-o','--out', dest='fileout', metavar='<file>',
             help="File to save the generated list of words in (optional)")
     parser.add_argument('start', type=str, metavar='<start_string>',
             help="The initial rule to kick off the generator, "
@@ -82,18 +79,19 @@ def main(argv=None):
     
     args = parser.parse_args(argv)
     
-    with open(os.path.join(args.rulelist), mode="r") as rules:
+    with open(r'{}'.format(args.rulelist), mode="r") as rules:
         rulelist = ast.literal_eval("{" + rules.read() + "}")
     
     words = ''
-    for i in xrange(args.n):
+    for i in xrange(args.number):
         words += "{}\n".format(wg_rules(args.start))
     
     if bool(args.fileout) == True:
-        with open(os.path.join(args.fileout), mode="w") as out:
+        with open(r'{}'.format(args.fileout), mode="w") as out:
             out.write("{}".format(words))
     else:
         return words
+
 
 if __name__ == '__main__':
     sys.exit(main())

@@ -1,7 +1,7 @@
 WHARRGARBL.PY
 =============
 
-Generate random pseudo-words based on weighted probabilities with a little Python script.
+Generate (pseudo-)random pseudo-words based on weighted probabilities with a little Python script.
 
 Executing the Script
 --------------------
@@ -21,7 +21,7 @@ You'll need Python – I used version 2.7.3 to make this. Note that this is a *c
       -o <file>, --out <file>
                             File to save the generated list of words in (optional)
 
-Rule files
+Rule Files
 ----------
 
 Rule files are plain text files and should look like this:
@@ -83,6 +83,7 @@ Mixing rule names with non-rules is no problem:
         ("f", 0.25),
         ("x", 0.25)
     )
+
 
 Disclaimer
 ----------

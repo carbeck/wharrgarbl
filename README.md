@@ -88,4 +88,4 @@ Mixing rule names with non-rules is no problem:
 Disclaimer
 ----------
 
-This software comes "as-is" with no warranties expressed or implied.
+This software comes "as-is" with no warranties expressed or implied. Also, I'm currently (November 2013) taking a class on Python in order to learn it, so if you spot glaring noob errors, please be free to point out what is wrong. Corrections and improvements are always welcome!

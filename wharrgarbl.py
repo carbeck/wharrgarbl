@@ -67,11 +67,11 @@ def main(argv=None):
     
     parser = argparse.ArgumentParser(prog="wordgen.py", description=
                 "Generate random pseudo-words based on weighted probabilities.")
-    parser.add_argument('-n','--number', nargs='?', default='10', type=int, 
+    parser.add_argument('-n', '--number', nargs='?', default='10', type=int, 
             help="The number of pseudo-words to be generated. If no value is "
             "given, 10 will be assumed.", metavar='N')
-    parser.add_argument('-r','--rules', dest='rulelist', required=True, help="File containing the generation rules.", metavar='<file>')
-    parser.add_argument('-o','--out', dest='fileout', metavar='<file>',
+    parser.add_argument('-r', '--rules', dest='rulelist', required=True, help="File containing the generation rules.", metavar='<file>')
+    parser.add_argument('-o', '--out', dest='fileout', metavar='<file>',
             help="File to save the generated list of words in (optional)")
     parser.add_argument('start', type=str, metavar='<start_string>',
             help="The initial rule to kick off the generator, "

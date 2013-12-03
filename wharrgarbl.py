@@ -64,7 +64,7 @@ def main(argv=None):
     
     # Construct parser and help texts for command-line arguments
     
-    parser = argparse.ArgumentParser(prog="wordgen.py", description=
+    parser = argparse.ArgumentParser(prog="wharrgarbl.py", description=
                 "Generate random pseudo-words based on weighted probabilities.")
     parser.add_argument('-n', '--number', nargs='?', default='10', type=int, 
             help="The number of pseudo-words to be generated. If no value is "

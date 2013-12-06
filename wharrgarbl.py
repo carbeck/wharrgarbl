@@ -23,6 +23,7 @@
 
 import argparse
 import ast
+import codecs
 import os
 import os.path
 import random
@@ -81,7 +82,7 @@ def main(argv=None):
     
     # Read input file; convert input into a list
     
-    with open(r'{}'.format(args.rulelist), mode="r") as rules:
+    with codecs.open(r'{}'.format(args.rulelist), mode="r") as rules:
         rulelist = ast.literal_eval("{" + rules.read() + "}")
     
     # Generate number of words provided by command line
@@ -93,7 +94,7 @@ def main(argv=None):
     # If output is specified as a file, save to file, else print to shell
     
     if bool(args.fileout) == True:
-        with open(r'{}'.format(args.fileout), mode="w") as out:
+        with codecs.open(r'{}'.format(args.fileout), mode="w") as out:
             out.write("{}".format(words))
     else:
         return words

@@ -30,16 +30,6 @@ import random
 import re
 import sys
 
-# Supplementary function to raw-ify strings,
-# cf. http://code.activestate.com/recipes/65211-convert-a-string-into-a-raw-string/#c7
-
-def raw_string(s):
-    if isinstance(s, str):
-        s = s.encode('string-escape')
-    elif isinstance(s, unicode):
-        s = s.encode('unicode-escape')
-    return s
-
 # Pick element from the rule list based on its associated probability
 # rulelist = ((item_0, p_item_0), (item_1, p_item_1), ..., (item_n, p_item_n))
 
@@ -92,7 +82,7 @@ def main(argv=None):
     
     # Read input file; convert input into a list
     
-    with codecs.open(raw_string(args.rulelist), mode="r") as rules:
+    with codecs.open(args.rulelist, mode="r") as rules:
         rulelist = ast.literal_eval("{" + rules.read() + "}")
     
     # Generate number of words provided by command line
@@ -104,7 +94,7 @@ def main(argv=None):
     # If output is specified as a file, save to file, else print to shell
     
     if bool(args.fileout) == True:
-        with codecs.open(raw_string(args.fileout), mode="w") as out:
+        with codecs.open(args.fileout, mode="w") as out:
             out.write("{}".format(words))
     else:
         return words

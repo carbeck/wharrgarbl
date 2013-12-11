@@ -49,7 +49,11 @@ def wg_replacerule(matchobj):
 
 # Recursively walk through the rule list
 def wg_rules(string):
-    """As long as rule variables can be found, search through the string."""
+    """
+    As long as rule variables ('{something}') can be found, search through the 
+    string for instances of these, call the search-and-replace function, and
+    reinsert the result into this function.
+    """
     if bool(re.search(r"{.*?}", string)) == True:
         string = re.sub(r"{(.*?)}", wg_replacerule, string)
         return wg_rules(string)

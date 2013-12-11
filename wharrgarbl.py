@@ -33,7 +33,7 @@ import sys
 # Pick element from the rule list based on its associated probability
 # rulelist = ((item_0, p_item_0), (item_1, p_item_1), ..., (item_n, p_item_n))
 def wg_pick(rulelist):
-    """Randomly pick an element from a list based on the element's probability."""
+    """Randomly pick an from the rule list based on its associated probability."""
     p = random.uniform(0,1)
     p_cum = 0.0
     for item, p_item in rulelist:

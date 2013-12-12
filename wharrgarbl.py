@@ -29,10 +29,11 @@ import random
 import re
 import sys
 
-# Pick element from the rule list based on its associated probability
-# rulelist = ((item_0, p_item_0), (item_1, p_item_1), ..., (item_n, p_item_n))
 def wg_pick(rulelist):
-    """Randomly pick an element from the rule list based on its associated probability."""
+    """
+    Randomly pick an element from the rule list based on its associated probability.
+    rulelist = ((item_0, p_item_0), (item_1, p_item_1), ..., (item_n, p_item_n))
+    """
     p = random.uniform(0,1)
     p_cum = 0.0
     for item, p_item in rulelist:
@@ -40,17 +41,15 @@ def wg_pick(rulelist):
         if p < p_cum:
             return item
 
-# Takes matches and replaces them with a randomly picked rule from the rule list
 def wg_replacerule(matchobj):
     """Replace the match with a randomly picked element from the rule definitions."""
     string = matchobj.group(1)
     return wg_pick(rulelist[string])
 
-# Recursively walk through the rule list
 def wg_rules(string):
     """
     As long as rule variables ('{something}') can be found, search through the 
-    string for instances of these, call the search-and-replace function, and
+    string for instances of these, do search-and-replace on the first match, and
     reinsert the result into this function.
     """
     if bool(re.search(r"{.*?}", string)) == True:
@@ -59,9 +58,8 @@ def wg_rules(string):
     else:
         return string
 
-# Main
 def main(argv=None):
-    """Main function providing command line option parser etc."""
+    """Main function providing command line option parser and file I/O."""
     global rulelist
     if argv is None:
         argv = sys.argv[1:]

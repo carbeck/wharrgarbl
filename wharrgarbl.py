@@ -24,7 +24,6 @@
 import argparse
 import ast
 import codecs
-import os
 import os.path
 import random
 import re

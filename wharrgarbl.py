@@ -6,7 +6,7 @@
     Generate (pseudo-)random pseudo-words based on weighted probabilities.
 '''
 
-# Copyleft 2013 Carsten Becker <carbeck@gmail.com>
+# Copyleft 2013-14 Carsten Becker <carbeck@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,9 +32,10 @@ import sys
 def wg_pick(rulelist):
     """
     Randomly pick an element from the rule list based on its associated probability.
+    
     rulelist = ((item_0, p_item_0), (item_1, p_item_1), ..., (item_n, p_item_n))
     """
-    p = random.uniform(0,1)
+    p = random.random()
     p_cum = 0.0
     for item, p_item in rulelist:
         p_cum += p_item
@@ -48,11 +49,13 @@ def wg_replacerule(matchobj):
 
 def wg_rules(string):
     """
+    Recursively iterate through the rule that is given to the function.
+    
     As long as rule variables ('{something}') can be found, search through the 
     string for instances of these, do search-and-replace on the first match, and
     reinsert the result into this function.
     """
-    if bool(re.search(r"{.*?}", string)) == True:
+    if bool(re.search(r"{.*?}", string)):
         string = re.sub(r"{(.*?)}", wg_replacerule, string)
         return wg_rules(string)
     else:
@@ -90,7 +93,7 @@ def main(argv=None):
         words += "{}\n".format(wg_rules(args.start))
     
     # If output is specified as a file, save to file, else print to shell
-    if bool(args.fileout) == True:
+    if bool(args.fileout):
         with codecs.open(args.fileout, mode="w") as out:
             out.write("{}".format(words))
     else:

@@ -102,7 +102,7 @@ def main(argv=None):
         words.append(wg_rules(args.start))
     
     # If a replacement ruleset is specified. NOTE: *must* be called "replace"!
-    if rulelist["replace"]:
+    if "replace" in rulelist:
         for i, word in enumerate(words):
             for pattern, replacement in rulelist["replace"]:
                 words[i] = re.sub(pattern, replacement, word)

@@ -87,7 +87,7 @@ Mixing rule names with non-rules is no problem:
 You can also match and replace by Python-compatible regular expressions, e.g.
 
     "replace":(
-	(r"(\w)b\1", r"b\1")
+        (r"(\w)b\1", r"b\1")
     )
 
 This will replace a word-character `\w` followed by `b` and followed by the 

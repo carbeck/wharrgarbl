@@ -84,8 +84,18 @@ Mixing rule names with non-rules is no problem:
         ("x", 0.25)
     )
 
+You can also match and replace by Python-compatible regular expressions, e.g.
+
+    "replace":(
+	(r"(\w)b\1", r"b\1")
+    )
+
+This will replace a word-character `\w` followed by `b` and followed by the 
+same character `\w` with just b and the character, e.g. `aba` will be replaced 
+with `ba`.
+
 
 Disclaimer
 ----------
 
-This software comes "as-is" with no warranties expressed or implied. Also, I'm currently (November 2013) taking a class on Python in order to learn it, so if you spot glaring noob errors, please be free to point out what is wrong. Corrections and improvements are always welcome!
+This software comes "as-is" with no warranties expressed or implied. The bulk of the program was written in November 2013 while I was taking an intro class on Python at the Lingustics department of University of Marburg, Germany. Corrections and improvements, especially regarding noob errors, are always welcome!

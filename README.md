@@ -91,8 +91,8 @@ You can also match and replace by Python-compatible regular expressions, e.g.
     )
 
 This will replace a word-character `\w` followed by `b` and followed by the 
-same character `\w` with just b and the character, e.g. `aba` will be replaced 
-with `ba`.
+same character `\w` again with just `b` and the character, e.g. `aba` will be 
+replaced with `ba`.
 
 
 Disclaimer

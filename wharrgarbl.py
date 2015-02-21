@@ -1,4 +1,4 @@
-#! /usr/bin/env python 
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 ''' wharrgarbl.py -- Yet another word generator
@@ -6,7 +6,7 @@
     Generate (pseudo-)random pseudo-words based on weighted probabilities.
 '''
 
-# Copyleft 2013-14 Carsten Becker <carbeck@gmail.com>
+# Copyleft 2013-15 Carsten Becker <carbeck@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,7 +23,6 @@
 
 import argparse
 import ast
-import codecs
 import os.path
 import random
 import re
@@ -35,7 +34,17 @@ def wg_pick(rulelist):
     
     rulelist = ((item_0, p_item_0), (item_1, p_item_1), ..., (item_n, p_item_n))
     """
-    p = random.random()
+    
+    # Sum up all the probability values in the group, i.e. there can be an
+    # arbitrary number of each element in the group
+    p_max = sum(p for i, p in rulelist)
+    
+    # Generate a random float number between 0.01 and p_max + 0.01 so that
+    # 0.01 <= x < p_max + 0.01
+    p = random.uniform(0.01, p_max + 0.01)
+    
+    # Loop through the elements while summing up their probabilities; if the
+    # value of p is reached, exit the loop and return where we stopped
     p_cum = 0.0
     for item, p_item in rulelist:
         p_cum += p_item
@@ -84,20 +93,26 @@ def main(argv=None):
     args = parser.parse_args(argv)
     
     # Read input file; convert input into a list
-    with codecs.open(args.rulelist, mode="r") as rules:
+    with open(args.rulelist, mode="r") as rules:
         rulelist = ast.literal_eval("{" + rules.read() + "}")
     
-    # Generate number of words provided by command line
-    words = ''
-    for i in xrange(args.number):
-        words += "{}\n".format(wg_rules(args.start))
+    # Generate the number of words provided by the command line input
+    words = []
+    for i in range(args.number):
+        words.append(wg_rules(args.start))
+    
+    # If a replacement ruleset is specified. NOTE: *must* be called "replace"!
+    if rulelist["replace"]:
+        for i, word in enumerate(words):
+            for pattern, replacement in rulelist["replace"]:
+                words[i] = re.sub(pattern, replacement, word)
     
     # If output is specified as a file, save to file, else print to shell
     if bool(args.fileout):
-        with codecs.open(args.fileout, mode="w") as out:
-            out.write("{}".format(words))
+        with open(args.fileout, mode="w") as out:
+            out.write("\n".join(sorted(words)))
     else:
-        return words
+        return "\n".join(sorted(words))
 
 if __name__ == '__main__':
     sys.exit(main())

@@ -6,7 +6,7 @@ Generate (pseudo-)random pseudo-words based on weighted probabilities with a lit
 Executing the Script
 --------------------
 
-You'll need Python – I used version 2.7.3 to make this. Note that this is a *command-line program*. `python wharrgarbl.py -h` gives you some advice on the input:
+You'll need Python 3 – I used version 3.4 to make this. Note that this is a *command-line program*. `python wharrgarbl.py -h` gives you some advice on the input:
 
     positional arguments:
       <start_string>        The initial rule to kick off the generator, e.g. "{W}"

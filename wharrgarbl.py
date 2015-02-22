@@ -78,18 +78,21 @@ def main(argv=None):
     
     # Construct parser and help texts for command-line arguments
     parser = argparse.ArgumentParser(prog="wharrgarbl.py", description=
-                "Generate (pseudo-)random pseudo-words based on weighted probabilities.")
-    parser.add_argument('-n', '--number', nargs='?', default='10', type=int, 
-            help="The number of pseudo-words to be generated. If no value is "
-            "given, 10 will be assumed.", metavar='N')
-    parser.add_argument('-r', '--rules', dest='rulelist', required=True, 
-            help="File containing the generation rules.", metavar='<file>')
-    parser.add_argument('-o', '--out', dest='fileout', metavar='<file>',
-            help="File to save the generated list of words in (optional)")
-    parser.add_argument('start', type=str, nargs='?', default='start', 
-            metavar='<start_rule>', help='''The initial rule to kick off the 
-            generator, e.g. "start" if your topmost rule is called "start". If
-            nothing is set, "start" will be assumed.''')
+                                     """Generate (pseudo-)random pseudo-words 
+                                     based on weighted probabilities.""")
+    parser.add_argument('rulelist', nargs=1, metavar='<rule list>', 
+                        help="""File containing the generation rules.""")
+    parser.add_argument('fileout', nargs='?', metavar='<output file>', 
+                        help="""File to save the generated list of words in 
+                        (optional)""")
+    parser.add_argument('-n', '--number', nargs='?', default='10', type=int,
+                        help="""The number of pseudo-words to be generated. If no 
+                        value is "given, 10 will be assumed.""", metavar='N')
+    parser.add_argument('-s', '--start', type=str, nargs='?', default='start', 
+                        metavar='<start rule>', help='''The initial rule to 
+                        kick off the generator, e.g. "begin" if your topmost 
+                        rule is called "begin". If nothing is set, "start" will 
+                        be assumed.''')
     
     args = parser.parse_args(argv)
     

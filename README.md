@@ -9,25 +9,24 @@ Executing the Script
 You'll need Python 3 – I used version 3.4 to make this. Note that this is a *command-line program*. `python wharrgarbl.py -h` gives you some advice on the input:
 
     positional arguments:
-      <start_rule>          The initial rule to kick off the generator, e.g.
-                            "start" if your topmost rule is called "start". If
-                            nothing is set, "start" will be assumed.
-    
+      <rule list>           File containing the generation rules.
+      <output file>         File to save the generated list of words in (optional)
+
     optional arguments:
       -h, --help            show this help message and exit
       -n [N], --number [N]  The number of pseudo-words to be generated. If no
-                            value is given, 10 will be assumed.
-      -r <file>, --rules <file>
-                            File containing the generation rules.
-      -o <file>, --out <file>
-                            File to save the generated list of words in (optional)
+                            value is "given, 10 will be assumed.
+      -s [<start rule>], --start [<start rule>]
+                            The initial rule to kick off the generator, e.g.
+                            "begin" if your topmost rule is called "begin". If
+                            nothing is set, "start" will be assumed.
 
 Typical calls to the program will look like this:
 
-    python wharrgarbl.py -r foo.txt
-    python wharrgarbl.py -n 25 -r bar.txt
-    python wharrgarbl.py -n 5 -r baz.txt -o baz_out.txt
-    python wharrgarbl.py -r qux.txt begin
+    python wharrgarbl.py foo_rules.txt
+    python wharrgarbl.py -n 25 bar_rules.txt
+    python wharrgarbl.py -n 5 baz_rules.txt /home/johndoe/baz_out.txt
+    python wharrgarbl.py -s begin qux_rules.txt
 
 
 Rule Files

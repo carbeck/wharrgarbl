@@ -80,7 +80,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(prog="wharrgarbl.py", description=
                                      """Generate (pseudo-)random pseudo-words 
                                      based on weighted probabilities.""")
-    parser.add_argument('rulelist', nargs=1, metavar='<rule list>', 
+    parser.add_argument('rulelist', metavar='<rule list>', 
                         help="""File containing the generation rules.""")
     parser.add_argument('fileout', nargs='?', metavar='<output file>', 
                         help="""File to save the generated list of words in 
@@ -110,8 +110,8 @@ def main(argv=None):
         for i, word in enumerate(words):
             for pattern, replacement in rulelist["replace"]:
                 words[i] = re.sub(pattern, replacement, word)
-    
-    # If output is specified as a file, save to file, else print to shell
+
+    # If output is specified as a file, save to file
     if bool(args.fileout):
         with open(args.fileout, mode="w") as out:
             out.write("\n".join(sorted(words)))

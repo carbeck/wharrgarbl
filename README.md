@@ -9,8 +9,9 @@ Executing the Script
 You'll need Python 3 – I used version 3.4 to make this. Note that this is a *command-line program*. `python wharrgarbl.py -h` gives you some advice on the input:
 
     positional arguments:
-      <start_string>        The initial rule to kick off the generator, e.g. "{W}"
-                            if your topmost rule is called "W".
+      <start_rule>          The initial rule to kick off the generator, e.g.
+                            "start" if your topmost rule is called "start". If
+                            nothing is set, "start" will be assumed.
     
     optional arguments:
       -h, --help            show this help message and exit
@@ -20,6 +21,14 @@ You'll need Python 3 – I used version 3.4 to make this. Note that this is a *c
                             File containing the generation rules.
       -o <file>, --out <file>
                             File to save the generated list of words in (optional)
+
+Typical calls to the program will look like this:
+
+    python wharrgarbl.py -r foo.txt
+    python wharrgarbl.py -n 25 -r bar.txt
+    python wharrgarbl.py -n 5 -r baz.txt -o baz_out.txt
+    python wharrgarbl.py -r qux.txt begin
+
 
 Rule Files
 ----------

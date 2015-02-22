@@ -86,9 +86,10 @@ def main(argv=None):
             help="File containing the generation rules.", metavar='<file>')
     parser.add_argument('-o', '--out', dest='fileout', metavar='<file>',
             help="File to save the generated list of words in (optional)")
-    parser.add_argument('start', type=str, metavar='<start_string>',
-            help="The initial rule to kick off the generator, "
-            'e.g. "{W}" if your topmost rule is called "W".')
+    parser.add_argument('start', type=str, nargs='?', default='start', 
+            metavar='<start_rule>', help='''The initial rule to kick off the 
+            generator, e.g. "start" if your topmost rule is called "start". If
+            nothing is set, "start" will be assumed.''')
     
     args = parser.parse_args(argv)
     
@@ -99,7 +100,7 @@ def main(argv=None):
     # Generate the number of words provided by the command line input
     words = []
     for i in range(args.number):
-        words.append(wg_rules(args.start))
+        words.append(wg_rules("{" + args.start + "}"))
     
     # If a replacement ruleset is specified. NOTE: *must* be called "replace"!
     if "replace" in rulelist:

@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 ''' wharrgarbl.py -- Yet another word generator
-
     Generate (pseudo-)random pseudo-words based on weighted probabilities.
 '''
 
@@ -51,24 +50,19 @@ def wg_pick(rulelist):
         if p < p_cum:
             return item
 
-def wg_replacerule(matchobj):
-    """Replace the match with a randomly picked element from the rule definitions."""
-    string = matchobj.group(1)
-    return wg_pick(rulelist[string])
-
 def wg_rules(string):
     """
-    Recursively iterate through the rule that is given to the function.
+    Recursively iterate through the rule that is passed to the function.
     
     As long as rule variables ('{something}') can be found, search through the 
     string for instances of these, do search-and-replace on the first match, and
-    reinsert the result into this function.
+    reinsert the result into the string.
     """
-    if bool(re.search(r"{.*?}", string)):
-        string = re.sub(r"{(.*?)}", wg_replacerule, string)
-        return wg_rules(string)
-    else:
+    if not bool(re.search(r"{.*?}", string)):
         return string
+    
+    string = re.sub(r"{(.*?)}", lambda x: wg_pick(rulelist[x.group(1)]), string)
+    return wg_rules(string)        
 
 def main(argv=None):
     """Main function providing command line option parser and file I/O."""

@@ -81,7 +81,7 @@ def main(argv=None):
                         (optional)""")
     parser.add_argument('-n', '--number', nargs='?', default='10', type=int,
                         help="""The number of pseudo-words to be generated. If no 
-                        value is "given, 10 will be assumed.""", metavar='N')
+                        value is given, 10 will be assumed.""", metavar='N')
     parser.add_argument('-s', '--start', type=str, nargs='?', default='start', 
                         metavar='<start rule>', help='''The initial rule to 
                         kick off the generator, e.g. "begin" if your topmost 

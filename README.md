@@ -15,7 +15,7 @@ You'll need Python 3 – I used version 3.4 to make this. Note that this is a *c
     optional arguments:
       -h, --help            show this help message and exit
       -n [N], --number [N]  The number of pseudo-words to be generated. If no
-                            value is "given, 10 will be assumed.
+                            value is given, 10 will be assumed.
       -s [<start rule>], --start [<start rule>]
                             The initial rule to kick off the generator, e.g.
                             "begin" if your topmost rule is called "begin". If
@@ -48,7 +48,7 @@ Rule files are plain text files and should look like this:
         ("m", 0.2),
         ("n", 0.16),
         ("ng", 0.12),
-        ("v", 0.1)
+        ("v", 0.1),
     ),
     
     "V":(
@@ -57,18 +57,18 @@ Rule files are plain text files and should look like this:
         ("a", 0.2),
         ("o", 0.08),
         ("u", 0.04),
-        ("{X}", 0.4)
+        ("{X}", 0.4),
     ),
     
     "X":(
         ("ay", 0.5),
-        ("ey", 0.5)
+        ("ey", 0.5),
     )
 
 In more general terms, a rule has the following form:
 
     "rule_name":(
-        ("element", <probability>)
+        ("element", <probability>),
     )
     
 Inside an ("element", ‹probability›) couple, "element" can contain the name
@@ -76,26 +76,28 @@ of a rule itself again:
 
     ("{rule_name}", <probability>)
     
+(Note that the probabilities in a given rule set don't have to sum up to 1. The program simply adds up the weights in a rule set and adjusts the random number generator accordingly.)
+    
 Mixing rule names with non-rules is no problem:
 
     "X":(
         ("a{L}a", 0.25),
-        ("a{F}a", 0.75)
+        ("a{F}a", 0.75),
     ),
     "L":(
         ("r", 0.5),
-        ("l", 0.5)
+        ("l", 0.5),
     ),
     "F":(
         ("s", 0.5),
         ("f", 0.25),
-        ("x", 0.25)
+        ("x", 0.25),
     )
 
 You can also match and replace by Python-compatible regular expressions, e.g.
 
     "replace":(
-        (r"(\w)b\1", r"b\1")
+        (r"(\w)b\1", r"b\1"),
     )
 
 This will replace a word-character `\w` followed by `b` and followed by the 

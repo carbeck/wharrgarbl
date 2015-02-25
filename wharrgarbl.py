@@ -105,12 +105,13 @@ def main(argv=None):
             for pattern, replacement in rulelist["replace"]:
                 words[i] = re.sub(pattern, replacement, word)
 
-    # If output is specified as a file, save to file
+    # If output is specified as a file, save to file, else print to stdout
     if bool(args.fileout):
         with open(args.fileout, mode="w") as out:
             out.write("\n".join(sorted(words)))
     else:
-        return "\n".join(sorted(words))
+        print("\n".join(sorted(words)))
+        return True
 
 if __name__ == '__main__':
     sys.exit(main())

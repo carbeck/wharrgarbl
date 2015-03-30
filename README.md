@@ -34,7 +34,7 @@ Rule Files
 
 Rule files are plain text files and should look like this:
 
-    "W":(
+    "start":(
         ("{C}{V}{C}{V}", 0.5),
         ("{C}{C}{V}{C}", 0.25),
         ("{C}{V}{V}", 0.25),
